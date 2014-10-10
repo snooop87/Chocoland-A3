@@ -8,26 +8,7 @@ if (!isServer) exitWith {};
 
 diag_log "WASTELAND SERVER - Initializing Server Vars";
 
-pvar_teamSwitchList = [];
-publicVariable "pvar_teamSwitchList";
-pvar_teamKillList = [];
-publicVariable "pvar_teamKillList";
-pvar_spawn_beacons = [];
-publicVariable "pvar_spawn_beacons";
-pvar_warchest_funds_east = 0;
-publicVariable "pvar_warchest_funds_east";
-pvar_warchest_funds_west = 0;
-publicVariable "pvar_warchest_funds_west";
-clientMissionMarkers = [];
-publicVariable "clientMissionMarkers";
-clientRadarMarkers = [];
-publicVariable "clientRadarMarkers";
-currentDate = [];
-publicVariable "currentDate";
-currentInvites = [];
-publicVariable "currentInvites";
-
-"PlayerCDeath" addPublicVariableEventHandler { [_this select 1] spawn server_playerDied };
+#include "setupServerPVars.sqf"
 
 currentStaticHelis = []; // Storage for the heli marker numbers so that we don't spawn wrecks on top of live helis
 
@@ -41,33 +22,49 @@ civilianVehicles =
 	"C_Offroad_01_F",
 	"I_G_Offroad_01_F",
 	"C_Van_01_box_F",
+	"C_Van_01_fuel_F",
 	"C_Van_01_transport_F"
 ];
 
 //Light Military Vehicle List - Random Spawns
 lightMilitaryVehicles =
-[
+[	
+	"O_G_Offroad_01_F",
+	"O_G_Offroad_01_armed_F",
 	"B_Quadbike_01_F",
 	"O_Quadbike_01_F",
 	"I_Quadbike_01_F",
 	"I_G_Quadbike_01_F",
-//	"O_Truck_02_covered_F",
-//	"I_Truck_02_covered_F",
-//	"O_Truck_02_transport_F",
-//	"I_Truck_02_transport_F",
+	"O_Truck_02_covered_F",
+	"I_Truck_02_covered_F",
+	"O_Truck_02_transport_F",
+	"I_Truck_02_transport_F",
 	"I_G_Offroad_01_armed_F"
 ];
 
 //Medium Military Vehicle List - Random Spawns
 mediumMilitaryVehicles = 
 [
-//	"I_Truck_02_Fuel_F",
-//	"O_Truck_02_Fuel_F",
-//	"I_Truck_02_medical_F",
-//	"O_Truck_02_medical_F",
+	"I_Truck_02_Fuel_F",
+	"O_Truck_02_Fuel_F",
+	"I_Truck_02_medical_F",
+	"O_Truck_02_medical_F",
 	"B_MRAP_01_F",
 	"O_MRAP_02_F",
 	"I_MRAP_03_F"
+];
+
+//heavy Military Vehicle List - Random Spawns
+heavyMilitaryVehicles = 
+[
+	"I_APC_tracked_03_cannon_F",
+	"I_MBT_03_cannon_F",
+	"B_APC_Tracked_01_CRV_F",
+	"B_APC_Tracked_01_rcws_F",
+	"B_APC_Tracked_01_AA_F",
+	"B_MBT_01_cannon_F",
+	"O_MBT_02_cannon_F",
+	"O_APC_Tracked_02_AA_F"
 ];
 
 //Water Vehicles - Random Spawns
@@ -133,7 +130,7 @@ objectList =
 	"Land_RampConcreteHigh_F",
 	"Land_Sacks_goods_F",
 	"Land_Shoot_House_Wall_F",
-	"Land_WaterBarrel_F"
+	"Land_BarrelWater_F"
 ];
 
 //Object List - Random Spawns.
@@ -186,7 +183,7 @@ vehicleWeapons =
 	"arifle_MX_GL_F",
 	"arifle_MX_SW_F",
 	"arifle_MXM_F",
-//	"srifle_EBR_F",
+	"srifle_EBR_F",
 	"LMG_Mk200_F",
 	"LMG_Zafir_F"
 ];
@@ -225,8 +222,8 @@ vehicleAddition2 =
 
 MissionSpawnMarkers = [];
 {
-	if (["Mission_", _x] call fn_findString == 0) then
+	if (["Mission_", _x] call fn_startsWith) then
 	{
-		MissionSpawnMarkers set [count MissionSpawnMarkers, [_x, false]];
+		MissionSpawnMarkers pushBack [_x, false];
 	};
 } forEach allMapMarkers;

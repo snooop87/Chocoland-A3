@@ -1,15 +1,15 @@
 respawn="BASE";
-respawnDelay=4;//respawnDelay=15;
+respawnDelay=4;
 disabledAI=1;
-disableChannels[]={2,6};//disableChannels[] = {}; // {0} to disable global
+disableChannels[] = {2}; // {0} to disable global, {2} for command channel
 joinUnassigned = 0;
 enableItemsDropping = 0;
 weaponPool = 0;
-minScore = 0;//c
-corpseRemovalMinTime = 15*60;
+corpseLimit = 20;
+corpseRemovalMinTime = 10*60;
 corpseRemovalMaxTime = 15*60;
-wreckRemovalMinTime = 5*60;
-wreckRemovalMaxTime = 10*60;
+wreckRemovalMinTime = 2*60;
+wreckRemovalMaxTime = 5*60;
 enableDebugConsole = 1;
 loadScreen = "Loading.jpg";
 onPauseScript = "client\clientEvents\onPause.sqf";
@@ -19,28 +19,22 @@ class Header
 	minPlayers=1;
 	maxPlayers=84;
 };
-author="Chocobora";
-onLoadName = "Chocoland-WastelandMod Stratis";
-onLoadMission = "more information on Heavensdelight.de";
-overviewText = "more information on Heavensdelight.de";
-overviewTextLocked = "more information on Heavensdelight.de";
+author="";
+onLoadName = "A3Wasteland_v0.9g.Stratis"; // it would be great if you could keep "A3" in the name, like "ABC A3Wasteland" instead of "ABC Wasteland" :)
+onLoadMission = "Wasteland War is a harsh survival sandbox where two teams and independent players fight for survival.";
+overviewText = "Wasteland War is a harsh survival sandbox where two teams and independent players fight for survival.";
+overviewTextLocked = "Wasteland War is a harsh survival sandbox where two teams and independent players fight for survival.";
 overviewPicture = "Loading.jpg";
 
 //Dialog includes
-#include "client\systems\parastore\gun\dialog\gunshop_settings.hpp"
-#include "client\systems\parastore\gun\dialog\gunshop_ConfirmSell.hpp"
-#include "client\systems\parastore\general\dialog\genstore_settings.hpp"
-#include "client\systems\parastore\Build\dialog\buildshop_settings.hpp"
-#include "client\systems\parastore\vehicle\dialog\vehshop_settings.hpp"
-#include "client\systems\parastore\Chopper\dialog\chopshop_settings.hpp"
-#include "client\systems\parastore\dialog\menu_settings.hpp"
-//cend
-
+#include "client\systems\parastore\dialog\ps_settings.hpp"
 #include "client\gui_base.hpp"
 #include "addons\R3F_ARTY_AND_LOG\desc_include.h"
 #include "client\systems\common.hpp"
+#include "client\systems\ui_toolkit.hpp"
 #include "client\items\warchest\dialog.hpp"
 #include "client\actions\gui.hpp"
+#include "addons\far_revive\revive_gui.hpp"
 #include "client\systems\playerMenu\dialog\player_settings.hpp"
 #include "client\systems\groups\dialog\groupManagement.hpp"
 #include "client\systems\gunStore\dialog\gunshop_settings.hpp"
@@ -56,6 +50,8 @@ overviewPicture = "Loading.jpg";
 #include "client\systems\playerMenu\dialog\respawn_dialog.hpp"
 #include "client\systems\playerMenu\dialog\teamkill_dialog.hpp"
 #include "addons\proving_ground\PG_config.hpp"
+
+
 
 class RscTitles
 {

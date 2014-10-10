@@ -36,10 +36,8 @@ else
 	// Server Owners: access to everything
 	serverOwners = compileFinal str
 	[
-		"76561198128633060", //player1
 		"76561198078783807", // chocobo
 		"76561198010316297" // viggomarksman
-	
 	];
 
 	/********************************************************/

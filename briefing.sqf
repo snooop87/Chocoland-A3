@@ -10,6 +10,52 @@ player createDiarySubject ["credits", "Credits"];
 
 player createDiaryRecord ["changelog",
 [
+"0.1",
+"
+<br/> [Added] - Custom Map Content
+<br/> [Added] - Intro Message
+<br/> [Added] - Vehicle Repair Rearm stations 
+<br/> [Added] - ATM machines to store your cash
+<br/> [Changed] - Rifle added to basic spawn set up
+<br/> [Added] - 24hour Vehicle Saving for PURCHASED vehicles only
+<br/> [Changed] - Vehicle Pricing adjustments
+<br/> [Changed] - Combat abort and revive timer halved  
+<br/> [Added] - Tier 3 heavy vehicles added to random spawns
+<br/> [Added] - Custom revive system based on Farooq's Revive
+<br/> [Added] - Territory payroll at regular intervals
+<br/> [Added] - Emergency eject and permanent parachute
+<br/> [Added] - Player names shown when holding Windows key
+<br/> [Added] - Increased missile damage against tanks and helis
+<br/> [Added] - Reduced wheel damage from collisions
+<br/> [Added] - Selling bin in stores
+<br/> [Added] - Vehicle ammo crate in gunstore
+<br/> [Added] - Karts DLC content in stores
+<br/> [Added] - Team players on map as server option
+<br/> [Added] - Unlimited stamina server option
+<br/> [Added] - Static weapon saving server option
+<br/> [Added] - More push vehicle actions
+<br/> [Added] - Paradrop option for airlifted vehicles
+<br/> [Added] - Preload checkbox on respawn menu
+<br/> [Changed] - Independent territory capture is now group-based
+<br/> [Changed] - Towns blocked if more enemies than friendlies
+<br/> [Changed] - Increased ammo/fuel/repair cargo for resupply trucks
+<br/> [Changed] - Increased territory capture rewards for Altis
+<br/> [Changed] - Weapon loot in buildings now disabled by default
+<br/> [Changed] - Various vehicle store prices
+<br/> [Changed] - Increased prices for thermal optics
+<br/> [Changed] - Improved antihack
+<br/> [Fixed] - Corpse created on when leaving the game
+<br/> [Fixed] - Not able to lock static weapons
+<br/> [Fixed] - Unbreakable store windows
+<br/> [Fixed] - Respawn menu aspect ratio on some resolutions
+<br/> [Fixed] - Minor bugs with group system
+<br/> [Fixed] - Minor bugs with player items
+<br/> [Fixed] - Various other minor bugfixes and optimizations
+"
+]];
+
+player createDiaryRecord ["changelog",
+[
 "0.9g",
 "
 <br/> [Added] - Vehicle stores
@@ -112,34 +158,36 @@ player createDiaryRecord ["credits",
 [
 "Credits",
 "
-<br/><font size='16'>Developed by Team Wasteland:</font>
-<br/>	* JoSchaap (GoT/Tweakers.net)
+<br/><font size='16' color='#BBBBBB'>Developed by Team Wasteland:</font>
 <br/>	* AgentRev (TeamPlayerGaming)
+<br/>	* JoSchaap (GoT/Tweakers.net)
 <br/>	* MercyfulFate
 <br/>	* His_Shadow (KoS/KillonSight)
 <br/>	* Bewilderbeest (KoS/KillonSight)
 <br/>	* Torndeco
 <br/>	* Del1te (404Games)
 <br/>
-<br/><font size='16'>Original Arma 2 Wasteland missions by:</font>
+<br/><font size='16' color='#BBBBBB'>Original Arma 2 Wasteland missions by:</font>
 <br/>	* Tonic
 <br/>	* Sa-Matra
 <br/>	* MarKeR
 <br/>
-<br/><font size='16'>Ported to Arma 3 by 404Games:</font>
+<br/><font size='16' color='#BBBBBB'>Improved and ported to Arma 3 by 404Games:</font>
 <br/>	* Deadbeat
 <br/>	* Costlyy
 <br/>	* Pulse
 <br/>	* Domuk
 <br/>
-<br/><font size='16'>Other contributors:</font>
+<br/><font size='16' color='#BBBBBB'>Other contributors:</font>
 <br/>	* 82ndab-Bravo17 (GitHub)
 <br/>	* afroVoodo (Armaholic)
+<br/>	* Austerror (GitHub)
 <br/>	* AWA (OpenDayZ)
 <br/>	* bodybag (Gameaholic.se)
 <br/>	* code34 (iniDBI)
 <br/>	* Das Attorney (Jump MF)
 <br/>	* Ed! (404Games forums)
+<br/>	* Farooq (GitHub)
 <br/>	* HatchetHarry (GitHub)
 <br/>	* Hub (TeamPlayerGaming)
 <br/>	* k4n30 (GitHub)
@@ -154,10 +202,12 @@ player createDiaryRecord ["credits",
 <br/>	* Sa-Matra (BIS forums)
 <br/>	* Sanjo (GitHub)
 <br/>	* SCETheFuzz (GitHub)
+<br/>	* Shockwave (A3W forums)
 <br/>	* SicSemperTyrannis (iniDB)
 <br/>	* SPJESTER (404Games forums)
 <br/>	* spunFIN (BIS forums)
 <br/>	* Tonic (BIS forums)
+<br/>	* wiking.at (A3W forums)
 <br/>
 <br/><font size='16'>Thanks A LOT to everyone involved for the help and inspiration!</font>
 "

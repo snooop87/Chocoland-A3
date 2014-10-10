@@ -5,10 +5,13 @@
 
 if (!isServer) exitWith {};
 
-private ["_UID", "_data", "_getValue"];
+private ["_UID", "_data", "_saveValid", "_getValue"];
 
 _UID = _this;
 _data = [];
+
+_saveValid = ([_UID call PDB_playerFileName, "PlayerSave", "Position", "STRING"] call iniDB_read != "");
+_data pushBack ["PlayerSaveValid", _saveValid];
 
 _getValue =
 {
@@ -17,15 +20,16 @@ _getValue =
 	_type = _this select 1;
 	_section = [_this, 2, "PlayerSave"] call BIS_fnc_param;
 
-	_value = [_UID call PDB_databaseNameCompiler, _section, _name, _type] call iniDB_read;
+	_value = [_UID call PDB_playerFileName, _section, _name, _type] call iniDB_read;
 
 	if (!isNil "_value") then
 	{
-		[_data, [_name, _value]] call BIS_fnc_arrayPush;
+		_data pushBack [_name, _value];
 	};
 };
 
 ["Donator", "NUMBER", "PlayerInfo"] call _getValue;
+["BankMoney", "NUMBER", "PlayerInfo"] call _getValue; 
 
 ["Damage", "NUMBER"] call _getValue;
 ["Hunger", "NUMBER"] call _getValue;
@@ -35,12 +39,6 @@ if (["A3W_moneySaving"] call isConfigOn) then
 {
 	["Money", "NUMBER"] call _getValue;
 };
-
-["Uniform", "STRING"] call _getValue;
-["Vest", "STRING"] call _getValue;
-["Backpack", "STRING"] call _getValue;
-["Goggles", "STRING"] call _getValue;
-["Headgear", "STRING"] call _getValue;
 
 ["LoadedMagazines", "ARRAY"] call _getValue;
 
@@ -56,6 +54,12 @@ if (["A3W_moneySaving"] call isConfigOn) then
 
 ["CurrentMuzzle", "STRING"] call _getValue;
 ["Stance", "STRING"] call _getValue;
+
+["Uniform", "STRING"] call _getValue;
+["Vest", "STRING"] call _getValue;
+["Backpack", "STRING"] call _getValue;
+["Goggles", "STRING"] call _getValue;
+["Headgear", "STRING"] call _getValue;
 
 ["UniformWeapons", "ARRAY"] call _getValue;
 ["UniformItems", "ARRAY"] call _getValue;

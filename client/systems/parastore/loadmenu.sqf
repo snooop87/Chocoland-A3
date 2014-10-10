@@ -1,12 +1,30 @@
+//	@file Version: 1.0
+//	@file Name: loadGenStore.sqf
+//	@file Author: [404] Deadbeat
+//	@file Created: 20/11/2012 05:13
+//	@file Args:
 
-
-#include "dialog\menuDefines.sqf";
+#include "dialog\genstoreDefines.sqf";
 disableSerialization;
 
-_chopshopDialog = createDialog "menu1d";
+private ["_genshopDialog", "_Dialog", "_playerMoney", "_owner"];
+_genshopDialog = createDialog "genstored";
 
-_Dialog = findDisplay menu_DIALOG;
-CopperShop = str(_this select 0);
+_Dialog = findDisplay genstore_DIALOG;
+_playerMoney = _Dialog displayCtrl genstore_money;
+_playerMoney ctrlSetText format["Cash: $%1", [player getVariable ["cmoney", 0]] call fn_numbersText];
+if(!isNil "_this") then {_owner = _this select 0;};
+if(!isNil "_owner") then {currentOwnerName = name _owner;};
+if(!isNil "_owner") then {currentOwnerID = _owner;};
 
-if(ChopperShop == "ChopStore2") then {ShopSpawn = ChopSpawn2;};
-if(ChopperShop == "ChopStore3") then {ShopSpawn = ChopSpawn3;};
+[] spawn
+{
+	disableSerialization;
+	_dialog = findDisplay genstore_DIALOG;
+	while {!isNull _dialog} do
+	{
+		_escMenu = findDisplay 49;
+		if (!isNull _escMenu) exitWith { _escMenu closeDisplay 0 }; // Force close Esc menu if open
+		sleep 0.1;
+	};
+};

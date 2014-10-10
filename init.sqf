@@ -26,6 +26,8 @@ if (isServer) then { X_Server = true };
 if (!isDedicated) then { X_Client = true };
 if (isNull player) then { X_JIP = true };
 
+A3W_scriptThreads = [];
+
 [DEBUG] call compile preprocessFileLineNumbers "globalCompile.sqf";
 
 //init Wasteland Core
@@ -33,11 +35,12 @@ if (isNull player) then { X_JIP = true };
 [] execVM "storeConfig.sqf"; // Separated as its now v large
 [] execVM "briefing.sqf";
 
+
 if (!isDedicated) then
 {
 	[] spawn
 	{
-		9999 cutText ["connecting to Heavensdelight.de", "BLACK", 0.01];
+		9999 cutText ["Welcome to Chocoland, please wait for your client to initialize", "BLACK", 0.01];
 		
 		waitUntil {!isNull player};
 		removeAllWeapons player;
@@ -45,6 +48,7 @@ if (!isDedicated) then
 
 		// Reset group & side
 		[player] joinSilent createGroup playerSide;
+		player setVariable ["playerSpawning", true, true];
 
 		[] execVM "client\init.sqf";
 	};

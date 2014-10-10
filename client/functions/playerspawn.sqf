@@ -38,26 +38,26 @@ if (playerSide != INDEPENDENT) then
 //Teamkiller Kick
 if (_kickTeamKiller) exitWith
 {
+	player allowDamage false;
 	localize "STR_WL_Loading_Teamkiller";
 	9999 cutText [_text, "BLACK"];
 	titleText [_text, "BLACK"];
-	[] spawn {sleep 20; endMission "LOSER"};
+	[] spawn {sleep 20; player allowDamage true; endMission "LOSER"};
 };
 
 //Teamswitcher Kick
 if (_kickTeamSwitcher) exitWith
 {
+	player allowDamage false;
 	_text = format [localize "STR_WL_Loading_Teamswitched", localize format ["STR_WL_Gen_Team%1_2", _side]];
 	9999 cutText [_text, "BLACK"];
 	titleText [_text, "BLACK"];
-	[] spawn {sleep 20; endMission "LOSER"};
+	[] spawn {sleep 20; player allowDamage true; endMission "LOSER"};
 };
 
 // Only go through respawn dialog if no data from the player save system
-if (isNil "playerData_alive") then
+if (isNil "playerData_alive" || !isNil "playerData_resetPos") then
 {
-	//Send player to debug zone to stop fake spawn locations.
-	player setPosATL [3755.94,7945.76,0.00160313];
 	[player, "AmovPknlMstpSnonWnonDnon"] call switchMoveGlobal;
 
 	9999 cutText ["Loading...", "BLACK", 0.01];
@@ -72,12 +72,12 @@ if (isNil "playerData_alive") then
 	{
 		[] spawn fn_savePlayerData;
 	};
-}
-else
-{
-	playerData_alive = nil;
 };
+
+playerData_alive = nil;
+playerData_resetPos = nil;
 
 9999 cutText ["", "BLACK IN"];
 
 playerSpawning = false;
+player setVariable ["playerSpawning", false, true];

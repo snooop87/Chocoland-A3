@@ -95,8 +95,8 @@ if (ismultiplayer && _mode == 0) then {
 	//--- Client
 	private ["_canExecute"];
 	_canExecute = switch (typename _target) do {
-		case (typename grpnull): {player in units _target};
-		case (typename sideUnknown): {playerside == _target;};
+		case (typename grpNull): {group player == _target || (!alive player && player getVariable ["currentGroupRestore", grpNull] == _target)};
+		case (typename sideUnknown): {playerSide == _target};
 		default {true};
 	};
 
@@ -113,7 +113,12 @@ if (ismultiplayer && _mode == 0) then {
 			"titleTextMessage",
 			"territoryActivityHandler",
 			"spawnStoreObject",
-			"pushVehicleBack"
+			"pushVehicle",
+			"convertTerritoryOwner",
+			"updateTerritoryMarkers",
+			"parachuteLiftedVehicle",
+			"fn_enableSimulationGlobal",
+			"handleCorpseOnLeave"
 		];
 		
 		_blockedParam = 
@@ -125,8 +130,8 @@ if (ismultiplayer && _mode == 0) then {
 				"money",
 				"toString",
 				"publicVariableClient",
-				"AAN",
-				"3dCredits",
+				"BIS_fnc_AAN",
+				"BIS_fnc_3dCredits",
 				"spawnCrew",
 				"spawnEnemy",
 				"spawnGroup",

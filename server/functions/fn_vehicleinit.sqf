@@ -25,7 +25,7 @@ if (typeName _customInit == "STRING") then
 {
 	if (_thisCheck) then
 	{
-		private ["_initChars", "_strLen", "_command", "_varNameChars", "_inlineStr1Quote", "_inlineStr2Quote", "_vehicleChars"];
+		private ["_initChars", "_strLen", "_command", "_varNameChars", "_inlineStr1Quote", "_inlineStr2Quote", "_i", "_vehicleChars"];
 		
 		_initChars = toArray _customInit;
 		_strLen = count _initChars;
@@ -55,15 +55,13 @@ if (typeName _customInit == "STRING") then
 			then
 			{		
 				_vehicleChars = toArray "_this";
-				
-				{
-					_command set [count _command, _x];
-				} forEach _vehicleChars;
+				{ _command pushBack _x } forEach _vehicleChars;
 				
 				_i = _i + 3;
 			}
-			else {
-				_command set [count _command, _initChars select _i];
+			else
+			{
+				_command pushBack (_initChars select _i);
 			};
 		};
 		
